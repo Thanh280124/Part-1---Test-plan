@@ -10,8 +10,6 @@
 
 ## 1. Purpose of This Proposal
 
-The purpose of this initial proposal is to help our group agree on the structure, testing approach, responsibilities, and priorities for Part 1 of the Test Plan assignment.
-
 The application is an e-commerce store that sells food products from different small producers. Customers can search and filter products, add products to a shopping cart, and proceed to checkout through a third-party service. Producers can add products individually or import products in bulk.
 
 The main focus of the assignment is to plan unit testing for an existing utility library. We must also discuss other testing activities that would be necessary for the e-commerce store.
@@ -45,11 +43,10 @@ We propose using the following structure for the final report.
 
 The cover page and table of contents will be placed before the main sections.
 
-**Agreement needed:** Both members should confirm the structure and decide whether any subsections need to be renamed or reorganised. The final report must follow all the assignment requirements and remain within the 10-page limit for the main content.
 
 ## 3. Proposed End-to-End Scenarios
 
-We propose three scenarios that represent important workflows in the e-commerce store.
+Three scenarios that represent important workflows in the e-commerce store.
 
 ### Scenario 1: Searching and Filtering Products
 
@@ -274,13 +271,3 @@ Before starting the full report, we should agree on the following points:
 - Agree on how to combine and review the report.
 - Confirm the rules for AI usage and disclosure.
 - Set a target date for the first complete draft.
-
-### Expected outcome of the meeting
-
-At the end of the meeting, we should have an agreed report outline, three approved scenarios, a clear method for selecting the utility library files, a preliminary tool-selection plan, and a division of responsibilities.
-
-We can then work independently on our assigned sections and combine them into one consistent Test Plan document.
-
----
-
-**Status:** Initial proposal for discussion. All proposed decisions remain subject to agreement by both group members and verification against the assignment instructions and the provided utility library.
