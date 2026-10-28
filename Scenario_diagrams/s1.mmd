@@ -1,0 +1,26 @@
+flowchart TD
+  S(( )) --> A[Customer opens product catalogue]
+  A --> B[Customer enters search term]
+  B --> C[Frontend validates and normalises input]
+  C --> D{Input valid?}
+  D -- No --> E[Show validation message]
+  E --> B
+  D -- Yes --> F[Frontend sends search request to REST backend]
+  F --> G[Backend searches catalogue]
+  G --> H[Backend returns matching products]
+  H --> I{Apply filters?}
+  I -- Yes --> J[Customer applies filters: category, price range, contents, producer]
+  J --> K[System combines search criteria and filters]
+  I -- No --> L
+  K --> L{Any matching products?}
+  L -- No --> M[Show empty-results message]
+  M --> N{Change search or filters?}
+  N -- Yes --> B
+  N -- No --> Z
+  L -- Yes --> O[Display first page of results]
+  O --> P{Change sorting or page?}
+  P -- Yes --> Q[Display correct subset, keeping search criteria and filters]
+  Q --> P
+  P -- No --> Z(((End)))
+  style S fill:#000,stroke:#000
+  style Z fill:#fff,stroke:#000,stroke-width:3px

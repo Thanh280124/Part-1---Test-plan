@@ -1,0 +1,29 @@
+flowchart TD
+  S(( )) --> A[Producer opens product management interface or bulk-import facility]
+  A --> B{Creation method?}
+  B -- Individual --> C1[Producer enters name, price and producer]
+  C1 --> C2[Producer optionally enters category, contents, description]
+  C2 --> C3[System validates mandatory fields, description and price format]
+  C3 --> C4{Input valid?}
+  C4 -- No --> C5[Show validation errors]
+  C5 --> C1
+  C4 -- Yes --> G
+  B -- Bulk import --> D1[Producer submits file or data set with multiple records]
+  D1 --> D2[System validates each record: mandatory fields, description, price format, duplicates]
+  D2 --> D3[System separates valid and invalid records]
+  D3 --> D4[Report validation errors per import policy]
+  D4 --> D5{Any valid records?}
+  D5 -- No --> Z
+  D5 -- Yes --> G[Submit valid product data to backend]
+  G --> H[Backend saves products]
+  H --> I{Save successful?}
+  I -- No --> J[Report failure to producer]
+  J --> Z
+  I -- Yes --> K[Confirm successful creation]
+  K --> L[Producer or customer checks catalogue]
+  L --> M{Products found with correct information?}
+  M -- Yes --> Z
+  M -- No --> N[Report inconsistency between saved products and catalogue]
+  N --> Z(((End)))
+  style S fill:#000,stroke:#000
+  style Z fill:#fff,stroke:#000,stroke-width:3px

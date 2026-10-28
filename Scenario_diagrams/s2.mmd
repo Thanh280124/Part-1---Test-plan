@@ -1,0 +1,22 @@
+flowchart TD
+  S(( )) --> A[Customer searches for and selects a product]
+  A --> B[Customer adds product to shopping cart]
+  B --> C[System updates cart and recalculates total price]
+  C --> D{Change cart?}
+  D -- Yes --> E[Customer adds product, changes quantity, or removes item]
+  E --> F{Quantity and price valid?}
+  F -- No --> G[Show error, cart unchanged]
+  G --> D
+  F -- Yes --> C
+  D -- No --> H[Customer reviews products, quantities and total]
+  H --> I[Customer proceeds to checkout]
+  I --> J[Backend sends purchase information to third-party checkout service]
+  J --> K{Checkout response?}
+  K -- Success --> L[Inform customer: checkout succeeded]
+  L --> Z
+  K -- Failure or service unavailable --> M[Inform customer: checkout failed, keep cart]
+  M --> N{Retry checkout?}
+  N -- Yes --> I
+  N -- No --> Z(((End)))
+  style S fill:#000,stroke:#000
+  style Z fill:#fff,stroke:#000,stroke-width:3px
