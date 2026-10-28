@@ -1,0 +1,23 @@
+Scenario 1:
+-toString() could be removed from Scenario 1. It matters more elsewhere, for example capitalize and the validation in Scenario 3 depend on it.
+-defaultTo() returns a fallback value when the first value is missing (null or undefined). For example, defaultTo(product.category, "Uncategorised") returns “Uncategorised” if the product has no category.
+-toNum() What it does: it turns a value into a number. For example, the text "4.50" becomes the number 4.5.
+
+Scenario 2:
+-add: add(0.1, 0.2) returns 0.30000000000000004, which matters for your “two-decimal accuracy” risk. add("2", 3) returns "23" (text joined together), which is  why toNumber should come first.
+-toInteger(): If a customer types 2.5 or the page sends "3.7", the store needs to turn that into a valid whole quantity or reject it
+
+Scenario 3:
+countBy.js looks buggy, since new keys start at 0 instead of 1, so it’s a strong test candidate.
+
+
+maybe change 2.1 last section to : The scenarios point to operations the library may support: filtering and paginating collections, converting and validating numbers, summing totals, and checking for empty or missing input. Section 2.2 ranks the candidate files against these operations.
+
+
+Rist-table:
+AI helped read the library and draft the table. ??
+AI used to detect possible bugs on selected functions
+
+
+decisions:
+decide whether rist table stays in 2.2 or appendix
