@@ -99,14 +99,12 @@ These functions should be examined in the supplied repository before being selec
 
 1. The customer searches for and selects a product.
 2. The customer adds the product to the shopping cart.
-3. The customer adds another product or changes the quantity of an existing item.
-4. The system updates the cart contents and recalculates the total price.
-5. The customer increases or decreases a quantity, or removes an item.
-6. The system updates the cart and recalculates the total after each change.
-7. The customer reviews the products, quantities, and total price.
-8. The customer proceeds to checkout.
-9. The backend sends the required purchase information to the third-party checkout service.
-10. The system handles the checkout response and informs the customer whether the checkout process succeeded or failed.
+3. The customer adds more products, changes the quantity of an item (increase or decrease), or removes an item.
+4. After each change, the system updates the cart contents and recalculates the total price.
+5. The customer reviews the products, quantities, and total price.
+6. The customer proceeds to checkout.
+7. The backend sends the required purchase information to the third-party checkout service.
+8. The system handles the checkout response and informs the customer whether the checkout process succeeded or failed.
 
 **Important conditions and risks:**
 - Quantities must be valid; malformed, zero, or negative quantities must be handled according to the application's rules.
