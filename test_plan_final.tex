@@ -1,0 +1,838 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  9pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{DejaVu Sans}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{float}
+\usepackage{graphicx}
+\setkeys{Gin}{width=0.88\linewidth,height=0.83\textheight,keepaspectratio}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\setlength{\emergencystretch}{3em}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{TEST PLAN --- E-COMMERCE
+STORE}\label{test-plan-e-commerce-store}
+
+\textbf{COMP.SE.200-2026-2027-1 Software Testing \textbar{} Part 1 ---
+Test Plan} \textbf{Group 31 \textbar{} Pham Thanh(154888686) \textbar{}
+Georgios Malezoglou (154731995)} \textbf{Version:} 1.0 \textbar{}
+\textbf{Date:} 7 November 2026
+
+\subsection{Definitions and
+abbreviations}\label{definitions-and-abbreviations}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1412}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8588}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Term
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+SUT & System under test: the selected utility-library source files \\
+E2E & End-to-end; a complete user workflow across system components \\
+CI & Continuous integration; automated verification on code changes \\
+REST/API & Representational State Transfer / application programming
+interface \\
+Coverage & Proportion of instrumented statements or branches exercised
+by tests \\
+Stub & Controlled substitute for a dependency during a test \\
+Unit test & A test of one small unit of code in isolation \\
+Quality gate & A condition that must be satisfied before testing or a
+change is accepted \\
+\end{longtable}
+
+\section{1. Introduction}\label{introduction}
+
+\subsection{1.1 Purpose and
+deliverables}\label{purpose-and-deliverables}
+
+This plan explains what will be tested and why, how the tests will be
+designed, and how their results will be recorded and presented. It also
+explains how the results will help on deciding whether a helper
+functions library with no documentation can be reused in a food product
+e-commerce shop. It includes three E2E scenarios, 10 selected library
+functions in a priority order, a reproducible test approach, reporting
+and defect procedures, quality gates, detailed unit-test designs, and
+additional system-level testing recommendations. This is what Part 1 or
+this project will deliver, while part 2 includes the implementation of
+unit tests for the selected functions, GitHub Actions and Coveralls
+integration {[}1{]}.
+
+\subsection{1.2 Application context and
+risk}\label{application-context-and-risk}
+
+Customers search and filter products based on name, category, price,
+ingredients and the product producer. Customers can navigate through the
+results (splitted in different pages), update their cart and use an
+external provider for payment. Producers can add products manually or
+through an existing bulk-import portal. Inputs like name, price and
+producer are mandatory while category and contents are not. The frontend
+has to validate prices, descriptions and order inputs. A REST backend
+takes care of third-party services and catalogue operations {[}1{]}.
+Products may hide by wrong filters, totals may be affected due to
+numeric conversion errors and poor validation may admit invalid product
+records. The library is available in a project that has be abandoned and
+documentation is missing, so a developer should not guess what each
+function based on the name alone.
+
+\section{2. Context of testing}\label{context-of-testing}
+
+\subsection{2.1 Three representative E2E
+scenarios}\label{three-representative-e2e-scenarios}
+
+\subsubsection{S1 --- Product search, filtering and
+pagination}\label{s1-product-search-filtering-and-pagination}
+
+\textbf{Prerequisites:} Catalog has several producers, optional
+attributes that could be missing, and way too many matches to be
+displayed in one page. \textbf{Basic workflow:} (1) user accesses
+catalog; (2) user inputs the query into the search box; (3) frontend
+validates input and sends a REST request; (4) backend responds with
+matches; (5) user applies filters according to category, price, content,
+or producer; (6) system combines filters; (7) user navigates between
+pages; (8) matches are displayed on a page based on filters applied.
+\textbf{Variations:} empty/blank search, no matches, optional attributes
+missing, last/incorrect page, or incorrect price interval.
+\textbf{Expected output:} only valid matches are shown, paging works,
+blank output is justified. \textbf{Possible utilities:} \texttt{filter},
+\texttt{every}, \texttt{toNumber}, \texttt{isEmpty}, \texttt{defaultTo},
+\texttt{chunk}, \texttt{slice}. \textbf{Risk:} incorrect filters or
+pages numbers lead to hiding or misrepresentation of inventory. Activity
+diagram: refer to Appendix A.
+
+\subsubsection{S2 --- Cart, quantities and
+checkout}\label{s2-cart-quantities-and-checkout}
+
+\textbf{Preconditions:} The prices of products are correct; access to
+the cart and the checkout. \textbf{Flow:} (1) products selected by the
+customer; (2) add/remove a product to/from the cart; (3) change the
+quantity; (4) calculation of subtotals and total by the cart after each
+action; (5) cart overview; (6) sending checkout data from the backend to
+an external provider; (7) showing the outcome on UI. \textbf{Cases to
+consider:} incorrect, null, negative or non-integer quantity; empty
+cart; unavailable provider; duplicate submission. \textbf{Expected
+results:} accurate cart state and proper formatting of money values
+without false indication of payment success. \textbf{Candidate
+utilities:} \texttt{add}, \texttt{reduce}, \texttt{toNumber} (and
+\texttt{toInteger}, \texttt{clamp} as alternatives). \textbf{Risk:}
+incorrect totals or duplicate order. Activity Diagram: see Appendix B.
+The general \texttt{add} utility is not reliable for processing decimal
+money; special tests are needed for money utilities.
+
+\subsubsection{S3 --- Producer creation and bulk
+import}\label{s3-producer-creation-and-bulk-import}
+
+\textbf{Prerequisites:} Access by the producer of the entry form or
+import portal; mandatory field requirements. \textbf{Main flow:} (1)
+choice of single entry or bulk import by the producer; (2) providing
+product name, price, producer, and optional additional information; (3)
+validation of input by the frontend/importer; (4) invalid entries
+reported per the import policy; (5) valid entries stored using REST; (6)
+producer verifies entries in the catalogue. \textbf{Variants:} missing
+mandatory field, optional fields null values, incorrectly formatted
+prices, mixed invalid/valid entries, duplicates, and bulk imports.
+\textbf{Expected results:} No silent addition of invalid products,
+successful import and correct catalogue. \textbf{Candidate utilities:}
+\texttt{toNumber}, \texttt{isEmpty}, \texttt{every}, \texttt{defaultTo},
+\texttt{countBy}; \texttt{upperFirst} is an unused candidate for
+formatting purposes. \textbf{Risk:} Corrupted data in catalogue affects
+search and purchase. Activity diagram: Appendix C.
+
+\subsection{2.2 Scope and risk-based
+selection}\label{scope-and-risk-based-selection}
+
+Only ten \texttt{src} files at the highest level will be subjected to
+unit test. The hidden \texttt{.internal} folder is assumed to be
+error-free and hence will neither be tested nor covered, according to
+the instructions {[}1{]}. The user interface for the application, REST
+back-end service, and the interaction with the payment provider are
+beyond the scope of the provided implementation and their suggested
+tests are listed in §4.3.
+
+The team chose the ten files above based on three criteria between 1-3
+in total: \textbf{scenarios coverage} (number of S1-S3 scenarios that
+can be used), \textbf{impact of failure} (consequences of a possible
+error) and \textbf{estimated defect likelihood} (complexity and corner
+cases). \textbf{Total = coverage + impact + likelihood.} It is not about
+actual defect probability but rather an estimation for planning
+purposes. In case of ties, the priority goes first by the business
+impact, then by the coverage, and finally by the relevance to
+implementation chosen by the group. Scores and the unselected candidates
+are recorded in Appendix D.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2133}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6533}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Selected file
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scenarios
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Primary test focus
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{toNumber.js} & S1, S2, S3 & Numeric coercion, invalid values and
+prices \\
+\texttt{filter.js} & S1 & Predicate correctness, empty and mixed
+arrays \\
+\texttt{chunk.js} & S1 & Page sizes, remainder and boundary inputs \\
+\texttt{isEmpty.js} & S1, S2, S3 & Empty strings, arrays, objects and
+null-like data \\
+\texttt{add.js} & S2 & Arithmetic, coercion and precision limitations \\
+\texttt{countBy.js} & S3 & Group counts and duplicate detection
+support \\
+\texttt{reduce.js} & S2 & Accumulation, initial value and empty
+collections \\
+\texttt{every.js} & S1, S3 & All-condition predicates and empty
+collections \\
+\texttt{defaultTo.js} & S1, S3 & Missing optional values and valid falsy
+values \\
+\texttt{slice.js} & S1 & Start/end bounds and result subsets \\
+\end{longtable}
+
+The files \texttt{clamp.js}, \texttt{toInteger.js},
+\texttt{toString.js}, and \texttt{upperFirst.js} were considered but not
+included due to the file limit of ten. \texttt{map.js} and
+\texttt{toFinite.js} are other possible choices but not included in the
+final selection of the team. This is a \textbf{selection rationale} that
+the team has to verify the actual exports of the functions prior to Part
+2. The library helper does not perform the search, check out, or
+producer validation.
+
+\subsection{2.3 Assumptions and
+limitations}\label{assumptions-and-limitations}
+
+\texttt{.internal} functions within the library are deemed safe solely
+based on the fact that the assignment allows for such an assumption to
+be made, while no other \texttt{src} functions may be considered so.
+Expected results need to be based on the function semantics known for
+certain rather than on theoretical applications. If any of the exported
+helpers forcibly manipulates the input or outputs IEEE-754 floating
+point numbers, then such actions need to be mentioned along with the
+potential application-based issues. There will be no application code,
+backend interface, sandboxed payments, nor example products provided
+{[}1{]}.
+
+\section{3. Tools, reporting and quality
+controls}\label{tools-reporting-and-quality-controls}
+
+\subsection{3.1 Environment and
+toolchain}\label{environment-and-toolchain}
+
+The proposed \textbf{Part 2} stack is Node.js/npm, Git/GitHub,
+\textbf{Jest} for test execution/assertions, \textbf{Jest's coverage
+reporting} for local statement/branch data and LCOV output,
+\textbf{GitHub Actions} for CI and \textbf{Coveralls} for published
+coverage. This is just a planned setup. We have not yet downloaded or
+used these tools. Before setting up Jest, we will look at
+\texttt{package.json} to see how the library's modules are written (ESM
+or CommonJS). If something does not match, it will be documented in the
+final report. We will not secretly change the library's code.
+\texttt{c8} is another coverage tool, but we do not need it, since Jest
+already does this. Chai, Mocha and testdouble are not needed for what we
+want to achieve. GitHub Actions and Coveralls will be set up in Part 2,
+not now {[}1,3--6{]}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tool
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reason for choosing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Node.js / npm & JavaScript runtime and dependency management. & Required
+to execute the JavaScript tests and install Jest and other project
+dependencies. \\
+Git / GitHub & Version control, test code storage, collaboration, and
+defect tracking through GitHub Issues. & Already required for the
+assignment submission and provides integration with the CI pipeline. \\
+Jest & Unit test execution and assertions. & The team has previous
+experience with Jest. It provides a test runner, assertions, and
+built-in coverage support. \\
+Jest Coverage & Measure local statement and branch coverage and generate
+LCOV reports. & Integrated into Jest, avoiding the need for a separate
+coverage library. \\
+GitHub Actions & Automatically execute tests on pushes and pull requests
+(Part 2). & Integrated with GitHub and does not require a separate CI
+server. \\
+Coveralls & Publish coverage results and display coverage information
+for individual source files (Part 2). & Accepts LCOV reports generated
+by Jest and provides a centralised view of test coverage. \\
+\end{longtable}
+
+\textbf{Reproducible setup outline:} We clone the repository and write
+down the commit that we tested and the Node/npm versions as well. We
+look into package.json, the imports in the source files and any existing
+tests. We install the dependencies (npm ci if lockfile exists, otherwise
+npm install). We add Jest and write a small smoke test for one of the
+selected functions and then we run it locally. We set up
+collectCoverageFrom so the coverage can be measured based on the 10
+selected files only and leave \textbf{/.internal/} out. We make a LCOV
+report with Jest for Coveralls. In Part 2, we add a workflow to GitHub
+Actions that installs the dependencies, it runs the tests and uploads
+the LCOV report. We won't change library's source code and we will write
+all the commands and settings to reposetory's README file. The Appendix
+E shows only a small settings piece that we have not try yet.
+
+\subsection{3.2 Execution and result
+reporting}\label{execution-and-result-reporting}
+
+For each test run record include the date/time, branch name, commit
+hash, Node.js version used, test command, number of tests run, passed,
+failed, skipped, blocked, planned, executed, expected vs.~actual
+outputs, coverage on selected files, and links to related issues for
+each test run. A test failure must be initially investigated in terms of
+the test oracle and the environment before calling it a library bug.
+During the test phase, keep track of the progress in a concise manner;
+after the test phase, release a report on test results per
+functionality, open issues, and scenarios.
+
+\subsection{3.3 Defect tracking}\label{defect-tracking}
+
+Use \textbf{GitHub Issues} through labels based on severity, priority,
+functionality, and state. Process: \textbf{New → Confirmed →
+Investigating → Resolved → Retest (if any) → Closed}; an issue other
+than a defect may be \textbf{Rejected} along with the reason for that.
+``Resolved'' means that the defect was resolved, although it does not
+imply changing the library's code. Severity: severity/impact on the
+business side (Critical -- a matter of safety in totals or lack of
+function in core functionality; High -- significant incorrectness of the
+result; Medium -- limited error case; Low -- minor problem with unusual
+input handling). Priority: urgency (P1 -- urgent problem; P2 -- soon; P3
+-- standard; P4 -- low).
+
+\textbf{Issue Template:} Title \& Issue number; File/export that got
+impacted; Test case number; Commit/Environment; Exact input and
+precondition; Steps involved; Expected result (oracle); Actual result;
+Logs/Screenshots (if any); Severity/Priority; Assignee \& Status; Impact
+of the issue on scenario; Retest details.
+
+\subsection{3.4 Metrics, entry/exit criteria and quality
+gates}\label{metrics-entryexit-criteria-and-quality-gates}
+
+\textbf{Entry:} ten files fixed; expected contracts reviewed; runnable
+test environment and configuration setup; cases with clear inputs and
+oracles. \textbf{Case pass:} actual output is equal to expected
+contract, including any thrown exceptions. \textbf{Blocked:} an
+unsatisfied pre-requisite stops the case execution; log separately.
+\textbf{Exit:} all intended cases run or justified to be blocked;
+failures analyzed and logged; coverage collected for selected files
+only; uncovered branches and open risks analyzed; report generated.
+Cleanliness of a stage is not reached when there are still important
+failures present, despite high coverage.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1875}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metric
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Calculation / target
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Execution rate & Executed / planned × 100; target 100\% or documented
+exceptions \\
+Pass rate & Passed / executed × 100; report observed rate, do not invent
+a target outcome \\
+Confirmed defects & Count by function, severity and scenario
+consequence \\
+Statement coverage & Covered statements / measurable statements;
+\textbf{aim ≥80\%} \\
+Branch coverage & Covered branches / measurable branches; \textbf{aim
+≥80\%} where available \\
+\end{longtable}
+
+The 80\% here refers to \textbf{group coverage} and not individual
+assignment coverage. Create valid, invalid, equivalence class, boundary,
+and negative test cases; examine unexecuted branches; create test cases
+or justify the non-executability of some test paths. Coverage is an
+indication of execution and not correctness.
+
+\section{4. Tests and AI in testing}\label{tests-and-ai-in-testing}
+
+\subsection{4.1 Unit-test design
+principles}\label{unit-test-design-principles}
+
+Each selected export function is tested individually using deterministic
+input data and an expected outcome. Equivalence partitioning (of
+valid/invalid types), boundary value analysis (with
+empty/singleton/boundary page size), decision branch coverage, negative
+and regression test cases must be used. Tests should be independent,
+reproducible and behave-named. The validated contract rather than an
+e-commerce specific feature will serve as the oracle. Implementation
+detail testing and test duplication in \texttt{.internal} package should
+not be included. Stubs are to be used only when there is need for
+external and non-deterministic inputs; otherwise they are not required
+for pure collection helper functions. In case semantics of actual source
+code differs from the proposed oracle, check the contract and adjust the
+test case.
+
+\subsection{4.2 Detailed test designs for two selected
+functions}\label{detailed-test-designs-for-two-selected-functions}
+
+\subsubsection{\texorpdfstring{Function A: \texttt{chunk.js} ---
+pagination support
+(S1)}{Function A: chunk.js --- pagination support (S1)}}\label{function-a-chunk.js-pagination-support-s1}
+
+\textbf{Assumed interface for test design:} \texttt{chunk(array,\ size)}
+takes an array and chunks it into smaller arrays that are continuous and
+consist of up to \texttt{size} elements; the last chunk can be shorter.
+The actual behavior in case of a default or incorrect size value needs
+to be confirmed in the repo. \textbf{No stubs} are required.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0450}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2703}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4505}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2342}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Expected output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CH-01 & \texttt{{[}1,2,3,4,5{]}}, size \texttt{2} &
+\texttt{{[}{[}1,2{]},{[}3,4{]},{[}5{]}{]}} & Non-divisible page count \\
+CH-02 & \texttt{{[}1,2,3,4{]}}, size \texttt{2} &
+\texttt{{[}{[}1,2{]},{[}3,4{]}{]}} & Exact division \\
+CH-03 & \texttt{{[}{]}}, size \texttt{3} & \texttt{{[}{]}} & Empty
+catalogue \\
+CH-04 & \texttt{{[}7{]}}, size \texttt{3} & \texttt{{[}{[}7{]}{]}} &
+Fewer items than page size \\
+CH-05 & \texttt{{[}1,2,3{]}}, size \texttt{1} &
+\texttt{{[}{[}1{]},{[}2{]},{[}3{]}{]}} & Smallest positive size \\
+CH-06 & \texttt{{[}1,2,3{]}}, size \texttt{5} &
+\texttt{{[}{[}1,2,3{]}{]}} & Oversized page \\
+CH-07 &
+\texttt{{[}\textquotesingle{}a\textquotesingle{},\textquotesingle{}b\textquotesingle{},\textquotesingle{}c\textquotesingle{}{]}},
+size \texttt{2} &
+\texttt{{[}{[}\textquotesingle{}a\textquotesingle{},\textquotesingle{}b\textquotesingle{}{]},{[}\textquotesingle{}c\textquotesingle{}{]}{]}}
+& Preserve values/order \\
+CH-08 & \texttt{{[}0,null,false{]}}, size \texttt{2} &
+\texttt{{[}{[}0,null{]},{[}false{]}{]}} & Preserve falsy values \\
+CH-09 & \texttt{{[}1,2,3{]}}, size \texttt{0} & \textbf{Confirm source
+contract before asserting} & Invalid/boundary size \\
+CH-10 & \texttt{{[}1,2,3{]}}, size \texttt{-1} & \textbf{Confirm source
+contract before asserting} & Negative size handling \\
+\end{longtable}
+
+CH-09/10 should be described first according to the observed contract
+(without a result, coercion, error, etc.), and then the expected one
+should be chosen; you should not invent a validation rule for the helper
+method in your application. \textbf{Scenarios linked:} CH-01/02/04/05/06
+are about first and last page rendering; S1 additionally requires tests
+for saving filters between pages.
+
+\subsubsection{\texorpdfstring{Function B: \texttt{toNumber.js} ---
+numeric conversion (S1, S2,
+S3)}{Function B: toNumber.js --- numeric conversion (S1, S2, S3)}}\label{function-b-tonumber.js-numeric-conversion-s1-s2-s3}
+
+\textbf{Assumed interface for test design:} \texttt{toNumber(value)}
+performs conversions according to the specified number coercion
+semantics in the library; however, it \textbf{does not} check whether
+the value is a correct monetary amount or has two decimal places in
+currency format. Checking for \texttt{NaN} should use
+\texttt{Number.isNaN}, not equality. \textbf{No stubs} will be required.
+Test actual source implementation with regard to white space handling,
+non-decimal formats, and objects.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0379}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1061}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3788}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Expected result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+TN-01 & \texttt{\textquotesingle{}12.50\textquotesingle{}} &
+\texttt{12.5} & Decimal price string \\
+TN-02 & \texttt{0} & \texttt{0} & Zero remains zero \\
+TN-03 & \texttt{\textquotesingle{}-3\textquotesingle{}} & \texttt{-3} &
+Negative numeric conversion (not acceptance) \\
+TN-04 & \texttt{\textquotesingle{}\ \ 42\ \ \textquotesingle{}} &
+\texttt{42} & Surrounding whitespace \\
+TN-05 & \texttt{\textquotesingle{}abc\textquotesingle{}} & \texttt{NaN}
+& Malformed numeric text \\
+TN-06 & \texttt{\textquotesingle{}\textquotesingle{}} & \texttt{0} &
+Empty-string conversion; app must separately reject blank price \\
+TN-07 & \texttt{null} & \texttt{0} & Null conversion; app must
+separately reject missing price \\
+TN-08 & \texttt{true} & \texttt{1} & Boolean coercion; not valid
+producer input \\
+TN-09 & \texttt{\textquotesingle{}0x10\textquotesingle{}} & \texttt{16}
+& Nondecimal numeric notation \\
+TN-10 & \texttt{\textquotesingle{}1.234\textquotesingle{}} &
+\texttt{1.234} & More than two decimal places remain unrounded \\
+TN-11 & \texttt{\textquotesingle{}Infinity\textquotesingle{}} &
+\texttt{Infinity} & Non-finite values need separate validation \\
+TN-12 & \texttt{{[}\textquotesingle{}7\textquotesingle{}{]}} &
+\textbf{Confirm source contract before asserting} & Array coercion /
+unexpected input type \\
+\end{longtable}
+
+\textbf{Scenario links:} TN-01/04 allow for filtering of prices and
+parsing of product entries; TN-05/06/07/08/10/11 demonstrate the
+necessity of validating frontend and backend after number conversion. In
+S2, calculate manually the cart total (e.g., 2 × €3.25 + 1 × €1.40 =
+€7.90), while checking formatting/rounding in application level,
+\textbf{not} as \texttt{toNumber} promise.
+
+\subsubsection{Coverage of the other eight selected
+files}\label{coverage-of-the-other-eight-selected-files}
+
+For \texttt{filter}, verify match/mismatch predicate, empty collections
+and more than one item. For \texttt{isEmpty}, compare empty and nonempty
+arrays, strings and objects. For \texttt{add}, verify positive, negative
+and zero operands; floating point calculations should not use
+currency-specific rounding conventions. For \texttt{countBy}, verify
+repeating categories, unique entries and empty arrays. For
+\texttt{reduce}, verify presence of an accumulator, empty array, and
+reducer precedence. For \texttt{every}, verify matches of all, one,
+none, and the empty array special case. For \texttt{defaultTo}, verify
+\texttt{null} and \texttt{undefined} against \texttt{0} and
+\texttt{false} (source). For \texttt{slice}, verify negative indices,
+index out of range, empty result and ordering. Link test cases to
+corresponding source code and S1--S3 in the Part 2 report.
+
+\subsection{4.3 Additional testing for the complete e-commerce
+system}\label{additional-testing-for-the-complete-e-commerce-system}
+
+\textbf{Functional E2E (top business priority):} run S1 with filters, no
+results, optional missing fields and pagination; S2 with quantity
+changes, empty cart, totals, checkout failure and duplicate submission
+protection; S3 with valid and invalid records, partial import,
+duplicates and catalogue verification. Use realistic fixtures and
+backend persistence verification, not only frontend notifications.
+
+\textbf{API/integration:} validate REST API request/response schema and
+errors, cart/persistences, producer API permission access, checkout
+requests, retry strategy on payment provider and preventing duplicate
+payments. Mock payment provider externally for deterministic failures
+and run a small sandbox contract test if possible. Find out if bulk
+import API call is atomic or not before validation.
+
+\textbf{Security/data integrity:} check input validation/XSS,
+authorization of producer API calls, CSRF if session based, protection
+from injections, rate limiting and protection of payment data; do not
+use real customer/card details. Check required fields and two decimal
+places monetary policy on the server side as the frontend validation can
+be easily bypassed.
+
+\textbf{Nonfunctional and usability testing:} testing performance with
+regard to big catalogues, filtering, and batch uploads; test pagination
+consistency; test search/cart/errors accessibility; test compatibility
+with browsers/mobility; test fault tolerance for network problems and
+failure recovery. The tests related to price accuracy, authentication,
+check out functionality, and data accuracy have top priority over
+cosmetic tests. They are \textbf{recommendations} as the program is not
+accessible {[}1{]}.
+
+\subsection{4.4 AI use, opportunities and
+safeguards}\label{ai-use-opportunities-and-safeguards}
+
+\textbf{Actual Phase 1 use:} ChatGPT was considered in helping to draft
+and edit this report, mapping scenario to function, improving the
+explanation for the prioritization, and listing additional testing
+risks. The responsibility for verification of all the contracts within
+the library, tools used for testing, references, diagrams, and the
+content of the report according to the assignment requirements still
+lies with the team. Any test cases drafted with the usage of the AI are
+not considered executed, no test coverage or defect results are
+fabricated.
+
+\textbf{Possible Phase 2 application:} AI (Claude) can provide
+equivalence classes, edge cases, and the skeleton of tests using Jest
+for the ten functions; help to analyze failing tests and uncover branch
+coverage; and create well-written issue tickets. This would be
+particularly useful when there is no documentation available for the
+library being used and also for the edge cases of conversion/empty
+inputs. Threats that need to be considered in this case would be
+creating imaginary function contracts, incorrect assertion of expected
+values, shallow tests which only replicate the implementation, skipping
+security tests, and leaking proprietary data/code. The mitigations would
+be reviewing the source code before accepting the suggestions, manually
+validating the numerical oracles, keeping reviewable tests on GitHub
+PRs, synthesizing the data, and making the assistance of AI transparent.
+
+\section{5. References}\label{references}
+
+{[}1{]} Tampere University, \emph{COMP.SE.200 Software Testing:
+Practical 1 --- Part 1 Test Plan and submission instructions}, 2026
+(course-provided assignment text). {[}2{]} Utility library repository:
+https://github.com/otula/COMP.SE.200-2024-2025-1 {[}3{]} Jest
+documentation: https://jestjs.io/docs/getting-started {[}4{]} GitHub
+Actions documentation: https://docs.github.com/en/actions {[}5{]}
+Coveralls documentation: https://docs.coveralls.io/ {[}6{]} Node.js
+documentation: https://nodejs.org/en/learn
+
+\newpage
+
+\section{Appendix (excluded from ten-page main-content
+limit)}\label{appendix-excluded-from-ten-page-main-content-limit}
+
+\subsection{Appendix A --- S1 activity
+diagram}\label{appendix-a-s1-activity-diagram}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{scenario1.png}
+\caption{S1 product search activity diagram}
+\end{figure}
+
+\subsection{Appendix B --- S2 activity
+diagram}\label{appendix-b-s2-activity-diagram}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{scenario2.png}
+\caption{S2 cart and checkout activity diagram}
+\end{figure}
+
+\subsection{Appendix C --- S3 activity
+diagram}\label{appendix-c-s3-activity-diagram}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{scenario3.png}
+\caption{S3 producer import activity diagram}
+\end{figure}
+
+\subsection{Appendix D --- Candidate prioritisation
+register}\label{appendix-d-candidate-prioritisation-register}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.2537}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1343}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1194}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0896}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1493}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0746}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1791}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+File
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scenarios
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Coverage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Impact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Likelihood
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Decision
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{toNumber.js} & 1,2,3 & 3 & 3 & 2 & 8 & Selected \\
+\texttt{filter.js} & 1 & 1 & 3 & 3 & 7 & Selected \\
+\texttt{chunk.js} & 1 & 1 & 3 & 3 & 7 & Selected \\
+\texttt{isEmpty.js} & 1,2,3 & 3 & 2 & 2 & 7 & Selected \\
+\texttt{add.js} & 2 & 1 & 3 & 2 & 6 & Selected \\
+\texttt{countBy.js} & 3 & 1 & 2 & 3 & 6 & Selected \\
+\texttt{reduce.js} & 2 & 1 & 3 & 1 & 5 & Selected \\
+\texttt{every.js} & 1,3 & 2 & 2 & 1 & 5 & Selected \\
+\texttt{defaultTo.js} & 1,3 & 2 & 2 & 1 & 5 & Selected \\
+\texttt{slice.js} & 1 & 1 & 2 & 2 & 5 & Selected \\
+\texttt{clamp.js} & 2 & 1 & 1 & 3 & 5 & Not selected \\
+\texttt{toInteger.js} & 2 & 1 & 2 & 1 & 4 & Not selected \\
+\texttt{toString.js} & 1 & 1 & 1 & 2 & 4 & Not selected \\
+\texttt{upperFirst.js} & 3 & 1 & 1 & 1 & 3 & Not selected \\
+\end{longtable}
+
+The score-5 tie is not uniquely resolved by impact alone: \texttt{slice}
+and \texttt{clamp} both score 5, but \texttt{slice} has greater direct
+relevance to the agreed pagination scenario. This documented judgement
+preserves the group's ten-file decision. Scores are planning estimates,
+not source-verified measurements.
+
+\subsection{Appendix E --- Planned Jest configuration
+sketch}\label{appendix-e-planned-jest-configuration-sketch}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Illustrative only: confirm module format and source paths before Part 2.}
+\NormalTok{module}\OperatorTok{.}\AttributeTok{exports} \OperatorTok{=}\NormalTok{ \{}
+  \DataTypeTok{testEnvironment}\OperatorTok{:} \StringTok{\textquotesingle{}node\textquotesingle{}}\OperatorTok{,}
+  \DataTypeTok{collectCoverage}\OperatorTok{:} \KeywordTok{true}\OperatorTok{,}
+  \DataTypeTok{coverageReporters}\OperatorTok{:}\NormalTok{ [}\StringTok{\textquotesingle{}text\textquotesingle{}}\OperatorTok{,} \StringTok{\textquotesingle{}lcov\textquotesingle{}}\NormalTok{]}\OperatorTok{,}
+  \DataTypeTok{collectCoverageFrom}\OperatorTok{:}\NormalTok{ [}
+    \StringTok{\textquotesingle{}src/\{toNumber,filter,chunk,isEmpty,add,countBy,reduce,every,defaultTo,slice\}.js\textquotesingle{}}\OperatorTok{,}
+    \StringTok{\textquotesingle{}!src/.internal/**\textquotesingle{}}
+\NormalTok{  ]}
+\NormalTok{\}}\OperatorTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Final submission check:} insert both student numbers; confirm
+exported function contracts and adjust provisional oracles; review AI
+declaration; check diagrams and page count; export the final PDF and
+name it \texttt{31\_STUDENT1\_STUDENT2\_2026\_part1.pdf} with the actual
+student numbers; submit to Moodle before the stated deadline {[}1{]}.
+
+\end{document}
